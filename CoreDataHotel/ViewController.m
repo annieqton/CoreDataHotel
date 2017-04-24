@@ -38,7 +38,8 @@
     [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
     [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
     
-    [AutoLayout equalHeightConstraintFromView:browseButton toView:self.view withMultiplier:0.33];
+    [AutoLayout equalHeightConstraintFromView:browseButton toView:self.view withMultiplier:0.2];
+    
     
     [browseButton addTarget:self action:@selector(browseButonSelected) forControlEvents:UIControlEventTouchUpInside];
     

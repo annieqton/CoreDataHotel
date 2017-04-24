@@ -40,7 +40,7 @@
 }
 
 
-
+//generic with muplitier
 +(NSLayoutConstraint *)genericConstraintFrom:(UIView *)view
                                       toView:(UIView *)superView
                                withAttribute:(NSLayoutAttribute)attribute
@@ -59,7 +59,7 @@
 }
 
 
-
+//generic
 +(NSLayoutConstraint *)genericConstraintFrom:(UIView *)view
                                       toView:(UIView *)superView
                                withAttribute:(NSLayoutAttribute)attribute{
@@ -68,6 +68,22 @@
     
 }
 
+//top contraints that takes in value for navigation bar
++(NSLayoutConstraint *)distanceFromView:(UIView *)view
+                                 toView:(UIView *)otherView
+                          withAttribute:(NSLayoutAttribute)attribute
+                               constant:(CGFloat) constant{
+    
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:view attribute:attribute relatedBy:NSLayoutRelationEqual toItem:otherView attribute:attribute multiplier:1.0 constant:constant];
+    
+    constraint.active = YES;
+    return constraint;
+    
+}
+
+
+
+//height
 +(NSLayoutConstraint *)equalHeightConstraintFromView:(UIView *)view
                                               toView:(UIView *)otherView
                                       withMultiplier:(CGFloat)multiplier{
@@ -80,7 +96,7 @@
     return heightConstraint;
 }
 
-
+//width
 +(NSLayoutConstraint *)equalWidthtConstraintFromView:(UIView *)view
                                               toView:(UIView *)otherView
                                       withMultiplier:(CGFloat)multiplier{
@@ -94,6 +110,7 @@
 }
 
 
+//leading
 +(NSLayoutConstraint *)leadingConstraintFrom:(UIView *)view
                                       toView:(UIView *)otherView{
     
@@ -101,6 +118,7 @@
 }
 
 
+//trailing
 +(NSLayoutConstraint *)trailingConstraintFrom:(UIView *)view
                                        toView:(UIView *)otherView{
     
