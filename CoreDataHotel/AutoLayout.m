@@ -78,23 +78,27 @@
                                                                andMultiplier:multiplier];
     
     return heightConstraint;
-    
 }
+
 
 +(NSLayoutConstraint *)leadingConstraintFrom:(UIView *)view
                                       toView:(UIView *)otherView{
     
     return [AutoLayout genericConstraintFrom:view toView:otherView withAttribute:NSLayoutAttributeLeading];
-    
 }
+
 
 +(NSLayoutConstraint *)trailingConstraintFrom:(UIView *)view
                                        toView:(UIView *)otherView{
     
     return [AutoLayout genericConstraintFrom:view toView:otherView withAttribute:NSLayoutAttributeTrailing];
-    
 }
 
 
 
 @end
+
+
+
+
+
