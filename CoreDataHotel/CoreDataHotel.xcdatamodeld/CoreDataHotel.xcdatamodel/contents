@@ -24,7 +24,7 @@
         <relationship name="reservation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reservation" inverseName="guest" inverseEntity="Reservation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Guest" positionX="43" positionY="174" width="128" height="73"/>
+        <element name="Guest" positionX="18" positionY="197" width="128" height="73"/>
         <element name="Hotel" positionX="-182" positionY="-153" width="128" height="103"/>
         <element name="Reservation" positionX="43" positionY="24" width="128" height="103"/>
         <element name="Room" positionX="43" positionY="-153" width="128" height="118"/>
