@@ -1,94 +1,124 @@
 //
-//  HotelsViewController.m
+//  RoomsViewController.m
 //  CoreDataHotel
 //
 //  Created by Annie Ton-Nu on 4/24/17.
 //  Copyright © 2017 Annie Ton-Nu. All rights reserved.
 //
 
-#import "HotelsViewController.h"
+#import "RoomsViewController.h"
 
 #import "AppDelegate.h"
+
+#import "HotelsViewController.h"
 
 #import "Hotel+CoreDataClass.h"
 #import "Hotel+CoreDataProperties.h"
 
 #import "AutoLayout.h"
 
-@interface HotelsViewcontroller ()<UITableViewDataSource>
+@interface RoomsViewController ()<UITableViewDataSource>
 
-@property(strong, nonatomic) NSArray *allHotels;
-@property(strong, nonatomic) UITableView *tableView;  //use strong here because we're not using storyboard
+@property(strong, nonatomic) NSArray *allRooms;
+@property(strong, nonatomic) UITableView *tableView;
 
 @end
 
-@implementation HotelsViewcontroller
+@implementation RoomsViewController
 
--(void)loadView{
+- (void)loadView {
     [super loadView];
-    
-    //add tableView as subview and apply constraints
+   
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     
     [self.view addSubview:self.tableView];
     
 }
 
-- (void)viewDidLoad {
+-(void)viewDidLoad {
     [super viewDidLoad];
     
     self.tableView.dataSource = self;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
-    [self allHotels];
+    [self allRooms];
 }
 
-
--(NSArray *) allHotels{
+-(NSArray *) allRooms{
     
-    if (!_allHotels) {
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    if(!_allRooms) {
+         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         
         NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
         
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
         
         NSError *fetchError;
-        NSArray *hotels = [context executeFetchRequest:request error:&fetchError];
+        NSArray *rooms = [context executeFetchRequest:request error:&fetchError];
+        
+//        NSArray *roomNumber = how to get room number here???
+        
+//        [fetchRequest setPredicate: [NSPredicate predicateWithFormat:@"", roomNumber]];
+//
+        
         
         if(fetchError){
-            NSLog(@"There was an error fetching hotels from Core Data");
+            NSLog(@"There was an error fetching rooms from Core Data");
         }
         
-        _allHotels = hotels;
-
-        NSLog(@"%@", hotels);
+        _allRooms = rooms;
+        
+        NSLog(@"%@", rooms);
     }
-    
-    return _allHotels;
+    return _allRooms;
 }
 
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-   
-    return [_allHotels count];
+    
+    return[_allRooms count];
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if(cell == nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     
-    Hotel *hotel = [_allHotels objectAtIndex:indexPath.row];
+    Room *room = [_allRooms objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = hotel.name;
+    cell.textLabel.int = room.number;
     
     return cell;
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -35,11 +35,13 @@
 
     browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.75 alpha:1.0];
     
-    [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
+//    [AutoLayout leadingConstraintFrom:browseButton toView:self.view]
     [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
     
     [AutoLayout equalHeightConstraintFromView:browseButton toView:self.view withMultiplier:0.2];
     
+    [AutoLayout distanceFromView:browseButton toView:self.view withAttribute: NSLayoutAttributeTop constant:navBarHeight];
+    [AutoLayout distanceFromView:browseButton toView:self.view withAttribute: NSLayoutAttributeLeft constant:200.0];
     
     [browseButton addTarget:self action:@selector(browseButonSelected) forControlEvents:UIControlEventTouchUpInside];
     
