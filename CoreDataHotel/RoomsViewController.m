@@ -12,8 +12,8 @@
 
 #import "HotelsViewController.h"
 
-#import "Hotel+CoreDataClass.h"
-#import "Hotel+CoreDataProperties.h"
+#import "Room+CoreDataClass.h"
+#import "Room+CoreDataProperties.h"
 
 #import "AutoLayout.h"
 
@@ -90,7 +90,7 @@
     
     Room *room = [_allRooms objectAtIndex:indexPath.row];
     
-    cell.textLabel.int = room.number;
+    cell.textLabel.int = room.number;  ///need to fix this. how do we get filter room by hotel. set predicate?
     
     return cell;
     
