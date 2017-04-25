@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "AutoLayout.h"
+#import "HotelsViewController.h"
+
 
 @interface ViewController ()
 
@@ -36,7 +38,11 @@
     [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
     [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
     
-    [AutoLayout equalHeightConstraintFromView:browseButton toView:self.view withMultiplier:0.33];
+    [AutoLayout equalHeightConstraintFromView:browseButton toView:self.view withMultiplier:0.2];
+    
+    [AutoLayout distanceFromView:browseButton toView:self.view withAttribute: NSLayoutAttributeTop constant:navBarHeight];
+//    [AutoLayout distanceFromView:browseButton toView:self.view withAttribute: NSLayoutAttributeLeft constant:100.0];
+
     
     [browseButton addTarget:self action:@selector(browseButonSelected) forControlEvents:UIControlEventTouchUpInside];
     
@@ -44,8 +50,10 @@
 
 
 -(void)browseButonSelected{
-    NSLog(@"Work on this for lab!");
+    HotelsViewController *hotelsViewController = [[HotelsViewController alloc]init];
+    [self.navigationController pushViewController:hotelsViewController animated:YES];  //push hotelsViewController to ViewController
 }
+
 
 
 -(UIButton *)createButtonWithTitle:(NSString *)title{

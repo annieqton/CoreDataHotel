@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F28CE0CA1EAE962D001CA295 /* hotels.json in Resources */ = {isa = PBXBuildFile; fileRef = F28CE0C91EAE962D001CA295 /* hotels.json */; };
-		F28CE0CD1EAEA486001CA295 /* HotelViewcontroller.m in Sources */ = {isa = PBXBuildFile; fileRef = F28CE0CC1EAEA486001CA295 /* HotelViewcontroller.m */; };
+		F28CE0DD1EAEAC4E001CA295 /* HotelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28CE0DC1EAEAC4E001CA295 /* HotelsViewController.m */; };
+		F28CE0E01EAECC97001CA295 /* RoomsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28CE0DF1EAECC97001CA295 /* RoomsViewController.m */; };
 		F2A029361EAE5F58004777DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A029351EAE5F58004777DA /* main.m */; };
 		F2A029391EAE5F58004777DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A029381EAE5F58004777DA /* AppDelegate.m */; };
 		F2A0293C1EAE5F58004777DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A0293B1EAE5F58004777DA /* ViewController.m */; };
@@ -20,8 +21,10 @@
 
 /* Begin PBXFileReference section */
 		F28CE0C91EAE962D001CA295 /* hotels.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hotels.json; sourceTree = "<group>"; };
-		F28CE0CB1EAEA486001CA295 /* HotelViewcontroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelViewcontroller.h; sourceTree = "<group>"; };
-		F28CE0CC1EAEA486001CA295 /* HotelViewcontroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelViewcontroller.m; sourceTree = "<group>"; };
+		F28CE0DB1EAEAC4E001CA295 /* HotelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotelsViewController.h; sourceTree = "<group>"; };
+		F28CE0DC1EAEAC4E001CA295 /* HotelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotelsViewController.m; sourceTree = "<group>"; };
+		F28CE0DE1EAECC96001CA295 /* RoomsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomsViewController.h; sourceTree = "<group>"; };
+		F28CE0DF1EAECC97001CA295 /* RoomsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomsViewController.m; sourceTree = "<group>"; };
 		F2A029311EAE5F57004777DA /* CoreDataHotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataHotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A029351EAE5F58004777DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F2A029371EAE5F58004777DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,8 +55,10 @@
 			children = (
 				F2A0293A1EAE5F58004777DA /* ViewController.h */,
 				F2A0293B1EAE5F58004777DA /* ViewController.m */,
-				F28CE0CB1EAEA486001CA295 /* HotelViewcontroller.h */,
-				F28CE0CC1EAEA486001CA295 /* HotelViewcontroller.m */,
+				F28CE0DB1EAEAC4E001CA295 /* HotelsViewController.h */,
+				F28CE0DC1EAEAC4E001CA295 /* HotelsViewController.m */,
+				F28CE0DE1EAECC96001CA295 /* RoomsViewController.h */,
+				F28CE0DF1EAECC97001CA295 /* RoomsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -181,9 +186,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2A0293C1EAE5F58004777DA /* ViewController.m in Sources */,
-				F28CE0CD1EAEA486001CA295 /* HotelViewcontroller.m in Sources */,
+				F28CE0DD1EAEAC4E001CA295 /* HotelsViewController.m in Sources */,
 				F2A029421EAE5F58004777DA /* CoreDataHotel.xcdatamodeld in Sources */,
 				F2A029391EAE5F58004777DA /* AppDelegate.m in Sources */,
+				F28CE0E01EAECC97001CA295 /* RoomsViewController.m in Sources */,
 				F2A029361EAE5F58004777DA /* main.m in Sources */,
 				F2A029501EAE6D2B004777DA /* AutoLayout.m in Sources */,
 			);

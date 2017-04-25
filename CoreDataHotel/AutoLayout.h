@@ -19,9 +19,18 @@
                                       toView:(UIView *)superView
                                withAttribute:(NSLayoutAttribute)attribute;
 
++(NSLayoutConstraint *)distanceFromView:(UIView *)view
+                                 toView:(UIView *)otherView
+                          withAttribute:(NSLayoutAttribute)attribute
+                               constant:(CGFloat) constant;
+
 +(NSArray *)fullScreenConstraintswithVFLForView:(UIView *)view;
 
 +(NSLayoutConstraint *)equalHeightConstraintFromView:(UIView *)view
+                                              toView:(UIView *)otherView
+                                      withMultiplier:(CGFloat)multiplier;
+
++(NSLayoutConstraint *)equalWidthtConstraintFromView:(UIView *)view
                                               toView:(UIView *)otherView
                                       withMultiplier:(CGFloat)multiplier;
 
