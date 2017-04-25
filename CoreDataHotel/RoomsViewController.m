@@ -8,14 +8,11 @@
 
 #import "RoomsViewController.h"
 
-#import "AppDelegate.h"
-
 #import "HotelsViewController.h"
 
 #import "Room+CoreDataClass.h"
 #import "Room+CoreDataProperties.h"
 
-#import "AutoLayout.h"
 
 @interface RoomsViewController ()<UITableViewDataSource>
 
@@ -42,55 +39,27 @@
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
-    [self allRooms];
+    self.allRooms = [[self.selectedHotel rooms] allObjects];
 }
 
--(NSArray *) allRooms{
-    
-    if(!_allRooms) {
-         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        
-        NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
-        
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
-        
-        NSError *fetchError;
-        NSArray *rooms = [context executeFetchRequest:request error:&fetchError];
-        
-//        NSArray *roomNumber = how to get room number here???
-        
-//        [fetchRequest setPredicate: [NSPredicate predicateWithFormat:@"", roomNumber]];
-//
-        
-        
-        if(fetchError){
-            NSLog(@"There was an error fetching rooms from Core Data");
-        }
-        
-        _allRooms = rooms;
-        
-        NSLog(@"%@", rooms);
-    }
-    return _allRooms;
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return[_allRooms count];
+    return [self.allRooms count];
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     if(cell == nil){
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
     }
     
-    Room *room = [_allRooms objectAtIndex:indexPath.row];
+    Room *room = [self.allRooms objectAtIndex:indexPath.row];
     
-    cell.textLabel.int = room.number;  ///need to fix this. how do we get filter room by hotel. set predicate?
+    cell.textLabel.text = [NSString stringWithFormat:@"%hd",room.number];
     
     return cell;
     

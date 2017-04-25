@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HotelsViewcontroller : UIViewController
+@interface HotelsViewController : UIViewController
 
 @end
 

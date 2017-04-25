@@ -10,6 +10,7 @@
 #import "RoomsViewController.h"
 
 #import "AppDelegate.h"
+#import "AutoLayout.h"
 
 #import "Hotel+CoreDataClass.h"
 #import "Hotel+CoreDataProperties.h"
@@ -18,16 +19,15 @@
 #import "Room+CoreDataProperties.h"
 
 
-#import "AutoLayout.h"
 
-@interface HotelsViewcontroller ()<UITableViewDataSource, UITableViewDelegate>
+@interface HotelsViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) NSArray *allHotels;
 @property(strong, nonatomic) UITableView *tableView;  //use strong here because we're not using storyboard
 
 @end
 
-@implementation HotelsViewcontroller
+@implementation HotelsViewController
 
 -(void)loadView{
     [super loadView];
@@ -101,8 +101,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    HotelsViewcontroller *roomsViewController = [[RoomsViewController alloc]init];
+    RoomsViewController *roomsViewController = [[RoomsViewController alloc]init];
+    
+    roomsViewController.selectedHotel = self.allHotels[indexPath.row]; //passing the indexpath on the hotel selected
+    
     [self.navigationController pushViewController:roomsViewController animated:YES];
+    
+    
 
 }
 
