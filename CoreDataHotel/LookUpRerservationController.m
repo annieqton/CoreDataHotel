@@ -131,7 +131,7 @@
     
     Reservation *reservation = self.allReservations[indexPath.row];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%hd", reservation.room];
+    cell.textLabel.text = [NSString stringWithFormat:@"%hd", reservation.room.number];
     
     return cell;
     
