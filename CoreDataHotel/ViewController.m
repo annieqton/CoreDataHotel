@@ -31,10 +31,10 @@
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     
     UIButton *browseButton = [self createButtonWithTitle:@"Browse"];
-    browseButton.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
+    browseButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.2 alpha:1.0];
     
     UIButton *bookButton = [self createButtonWithTitle:@"Book"];
-    bookButton.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.25 alpha:1.0];
+    bookButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
     
     UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
     lookupButton.backgroundColor = [UIColor colorWithRed:0.25 green:0.75 blue:1.0 alpha:1.0];

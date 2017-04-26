@@ -15,6 +15,7 @@
 		F29F4EF61EB1312A001C798D /* CoreDataHotelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F29F4EF51EB1312A001C798D /* CoreDataHotelTests.m */; };
 		F29F4EFE1EB1315B001C798D /* AutoLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F29F4EFD1EB1315B001C798D /* AutoLayoutTests.m */; };
 		F29F4F041EB134D2001C798D /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29F4F031EB134D2001C798D /* BookViewController.m */; };
+		F29F4F071EB14DAC001C798D /* LookUpRerservationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29F4F061EB14DAC001C798D /* LookUpRerservationController.m */; };
 		F2A029361EAE5F58004777DA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A029351EAE5F58004777DA /* main.m */; };
 		F2A029391EAE5F58004777DA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A029381EAE5F58004777DA /* AppDelegate.m */; };
 		F2A0293C1EAE5F58004777DA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A0293B1EAE5F58004777DA /* ViewController.m */; };
@@ -50,6 +51,8 @@
 		F29F4EFD1EB1315B001C798D /* AutoLayoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutTests.m; sourceTree = "<group>"; };
 		F29F4F021EB134D2001C798D /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
 		F29F4F031EB134D2001C798D /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
+		F29F4F051EB14DAC001C798D /* LookUpRerservationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookUpRerservationController.h; sourceTree = "<group>"; };
+		F29F4F061EB14DAC001C798D /* LookUpRerservationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookUpRerservationController.m; sourceTree = "<group>"; };
 		F2A029311EAE5F57004777DA /* CoreDataHotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataHotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A029351EAE5F58004777DA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F2A029371EAE5F58004777DA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -91,6 +94,8 @@
 				F29F4EED1EB12F68001C798D /* DatePickerViewController.m */,
 				F29F4F021EB134D2001C798D /* BookViewController.h */,
 				F29F4F031EB134D2001C798D /* BookViewController.m */,
+				F29F4F051EB14DAC001C798D /* LookUpRerservationController.h */,
+				F29F4F061EB14DAC001C798D /* LookUpRerservationController.m */,
 				F2A0293A1EAE5F58004777DA /* ViewController.h */,
 				F2A0293B1EAE5F58004777DA /* ViewController.m */,
 				F28CE0DB1EAEAC4E001CA295 /* HotelsViewController.h */,
@@ -283,6 +288,7 @@
 				F29F4F041EB134D2001C798D /* BookViewController.m in Sources */,
 				F2A029391EAE5F58004777DA /* AppDelegate.m in Sources */,
 				F28CE0E01EAECC97001CA295 /* RoomsViewController.m in Sources */,
+				F29F4F071EB14DAC001C798D /* LookUpRerservationController.m in Sources */,
 				F2A029361EAE5F58004777DA /* main.m in Sources */,
 				F29F4EEE1EB12F68001C798D /* DatePickerViewController.m in Sources */,
 				F2A029501EAE6D2B004777DA /* AutoLayout.m in Sources */,

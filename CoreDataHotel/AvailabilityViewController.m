@@ -95,6 +95,8 @@
     
     [AutoLayout fullScreenConstraintsWithVFLForView:self.tableView];
 }
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     BookViewController *newBookView = [[BookViewController alloc]init];
     
@@ -104,11 +106,15 @@
     
     [self.navigationController pushViewController:newBookView animated:YES];
 }
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.availableRooms sections]objectAtIndex:section];
     
     return sectionInfo.numberOfObjects;
 }
+
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
