@@ -32,8 +32,9 @@
 @property(strong,nonatomic)NSArray *allReservations;
 @property(strong, nonatomic)NSArray *selectedRoom;
 
-@property(strong, nonatomic) UISearchBar *searchBar;
-@property(strong, nonatomic)NSMutableArray *filteredReservation;
+@property(strong, nonatomic)UISearchBar *searchBar;
+@property(strong, nonatomic)NSMutableArray *searchReservationResult;
+@property(strong, nonatomic)BOOL isSearching;
 
 @end
 
@@ -67,7 +68,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    self.filteredReservation = [[NSMutableArray alloc]init];
+    self.searchReservationResult = [[NSMutableArray alloc]init];
     
 }
 
@@ -80,13 +81,44 @@
         NSComparisonResult result = [tempString compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch ) range:NSMakeRange(0, [searchString length])];
         
         if (result == NSOrderedSame) {
-            [self.filteredReservation addObject:tempString];
+            [self.searchReservationResult addObject:tempString];
         }
     }
 }
 
 
 //search bar implementation
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    isSearching = YES;
+}
+
+-(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    isSearching = NO;
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(nonnull NSString *)searchText {
+    NSLog(@"Text change - %d", isSearching);
+    
+    //remove all objects before search
+    [_searchReservationResult removeAllObjects];
+    
+    if([searchText length] != 0) {
+        isSearching = YES;
+        [self searchTableList];
+    } else {
+        isSearching = NO;
+    }
+}
+
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+        NSLog(@"Search cancelled.");
+}
+
+-(void)searchBarSearchButtonClciked:(UISearchBar *)searchBar {
+    NSLog(@"Searched clicked");
+    [self searchTableList];
+}
+
 
 
 
