@@ -31,6 +31,10 @@
 @property(strong,nonatomic)UITableView *reservationTableView;
 @property(strong,nonatomic)NSArray *allReservations;
 @property(strong, nonatomic)NSArray *selectedRoom;
+
+@property(strong, nonatomic) UISearchBar *searchBar;
+@property(strong, nonatomic)NSMutableArray *filteredReservation;
+
 @end
 
 
@@ -59,14 +63,38 @@
     
  }
 
+
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    
+    self.filteredReservation = [[NSMutableArray alloc]init];
+    
+}
+
+
+//search function
+-(void)searchTableList {
+    NSString *searchString = _searchBar.text;
+    
+    for(NSString *tempString in _allReservations) {
+        NSComparisonResult result = [tempString compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch ) range:NSMakeRange(0, [searchString length])];
+        
+        if (result == NSOrderedSame) {
+            [self.filteredReservation addObject:tempString];
+        }
+    }
+}
+
+
+//search bar implementation
+
+
+
 -(void)setupLayout{
     
 }
 
 
--(void)viewDidLoad{
-    [super viewDidLoad];
-}
 
 
 -(NSArray *)allReservations{
@@ -101,26 +129,12 @@
     
     BookViewController *allReservationView = [[BookViewController alloc]init];
     
-    allReservationView.selectedRoom = self.allReservations[indexPath.row];   //selectedRoom????
+    allReservationView.selectedRoom = self.allReservations[indexPath.row];
     
     [self.navigationController pushViewController:allReservationView animated:YES];
 }
 
 
-//-(UITableViewCell *)reservationTableView:(UITableView *)reservationTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    UITableViewCell *cell = [_reservationTableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-//    
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-//    }
-//    
-//    Reservation *reservation = self.allReservations[indexPath.row];
-//    
-//    cell.textLabel.text = reservation.room;
-//    
-//    return cell;
-//}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [_reservationTableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
@@ -131,11 +145,15 @@
     
     Reservation *reservation = self.allReservations[indexPath.row];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%hd", reservation.room.number];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%hd", reservation.room.number];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", reservation.guest.firstName];
     
     return cell;
     
 }
+
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.allReservations.count;
