@@ -8,6 +8,8 @@
 
 #import "LookUpRerservationController.h"
 
+#import "HotelsViewController.h"
+
 #import "AppDelegate.h"
 #import "AutoLayout.h"
 #import "BookViewController.h"
@@ -28,23 +30,24 @@
 
 @property(strong,nonatomic)UITableView *reservationTableView;
 @property(strong,nonatomic)NSArray *allReservations;
-
+@property(strong, nonatomic)NSArray *selectedRoom;
 @end
 
 
 @implementation LookUpRerservationController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)loadView {
+    [super loadView];
     
-    self.view.backgroundColor = [UIColor yellowColor];
     
     self.reservationTableView = [[UITableView alloc]init];
+    
+    self.reservationTableView.backgroundColor = [UIColor whiteColor];
     
     self.reservationTableView.dataSource = self;
     self.reservationTableView.delegate = self;
     
-    [self.reservationTableView registerClass::[UITableViewCell Class] forCellReuseIdentifier:@"cell"];
+    [self.reservationTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
     self.reservationTableView.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -70,7 +73,7 @@
     
     if(!_allReservations) {
         
-        AppDelegate *appDelegate = [(AppDelegate *) [UIApplication sharedApplication]delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         
         NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
         
@@ -93,23 +96,57 @@
 }
 
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+-(void)reservationTableView:(UITableView *)reservationTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     BookViewController *allReservationView = [[BookViewController alloc]init];
     
-    allReservationView.selectedRoom = self.allReservations[indexPath.row]   //selectedRoom????
+    allReservationView.selectedRoom = self.allReservations[indexPath.row];   //selectedRoom????
     
     [self.navigationController pushViewController:allReservationView animated:YES];
 }
 
 
+//-(UITableViewCell *)reservationTableView:(UITableView *)reservationTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    UITableViewCell *cell = [_reservationTableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+//    
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+//    }
+//    
+//    Reservation *reservation = self.allReservations[indexPath.row];
+//    
+//    cell.textLabel.text = reservation.room;
+//    
+//    return cell;
+//}
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [_reservationTableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    }
+    
+    Reservation *reservation = self.allReservations[indexPath.row];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%hd", reservation.room];
+    
+    return cell;
+    
+}
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.allReservations.count;
 
-
+}
 
 
 @end
+
+
+
 
 
 
