@@ -45,6 +45,8 @@
     [super loadView];
     
     
+    self.reservationTableView = [[UITableView alloc]init];
+    self.reservationTableView.backgroundColor = [UIColor whiteColor];
     
     
     self.reservationTableView.dataSource = self;
@@ -118,6 +120,7 @@
 
 
 -(void)setupLayout{
+    self.reservationTableView.translatesAutoresizingMaskIntoConstraints = NO;
     
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     
@@ -136,9 +139,9 @@
     [AutoLayout trailingConstraintFrom:searchBar toView:self.view];
     
     NSDictionary *viewDictionary = @{@"searchBar": searchBar};
-                                
+    
     NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin], @"searchBarHeight": [NSNumber numberWithFloat:searchBarHeight]};
-                                     
+    
     NSString *visualFormatString = @"V:|-topMargin-[searchBar]";
 
     [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary forMetricsDictionary:metricsDictionary withOptions:0 withVisualFormat:visualFormatString];
@@ -147,21 +150,18 @@
     
     
     //set resevationTableView below the search bar
-    self.reservationTableView = [[UITableView alloc]init];
-    self.reservationTableView.backgroundColor = [UIColor whiteColor];
-    
-    [AutoLayout leadingConstraintFrom:self.reservationTableView toView:self.view];
-    [AutoLayout trailingConstraintFrom:self.reservationTableView toView:self.view];
-    
-    NSDictionary *tableViewDictionary = @{@"searchReservationResult": _reservationTableView};
-    
-    NSDictionary *tableMetricsDictionary = @{@"searchBarHeight": [NSNumber numberWithFloat:searchBarHeight]};
-    
-    NSString *tableVisualFormatString = @"V:|-searchBar-[reservationTableView]";
-    
-    [AutoLayout constraintsWithVFLForViewDictionary:tableViewDictionary forMetricsDictionary:tableMetricsDictionary withOptions:0 withVisualFormat:tableVisualFormatString];
-   
-    self.reservationTableView.translatesAutoresizingMaskIntoConstraints = NO;
+
+//    [AutoLayout leadingConstraintFrom:self.reservationTableView toView:self.view];
+//    [AutoLayout trailingConstraintFrom:self.reservationTableView toView:self.view];
+//
+//    NSDictionary *tableViewDictionary = @{@"searchReservationResult": _reservationTableView};
+//
+//    NSDictionary *tableMetricsDictionary = @{@"searchBarHeight": [NSNumber numberWithFloat:searchBarHeight]};
+//
+//    NSString *tableVisualFormatString = @"V:|-searchBar-[reservationTableView]";
+//
+//    [AutoLayout constraintsWithVFLForViewDictionary:tableViewDictionary forMetricsDictionary:tableMetricsDictionary withOptions:0 withVisualFormat:tableVisualFormatString];
+//
 }
 
 
