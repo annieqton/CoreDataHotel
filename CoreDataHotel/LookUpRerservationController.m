@@ -98,14 +98,18 @@
     self.isSearching = NO;
 }
 
--(void)searchBar:(UISearchBar *)searchBarTextDidChange:(nonnull NSString *)searchText {
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(nonnull NSString *)searchText {
     
     if([searchText length] != 0) {
         self.isSearching = YES;
-        [self searchTableList];
+        self.filteredReservationResult = [[NSMutableArray alloc]init];
+        self.filteredReservationResult = [[self.allReservations filteredArrayUsingPredicate:[NSPredicate:@"guest.lastName CONTAINS[c] %@ | guest.firstName CONTAINS[c] %@", self.searchBar.text, self.searchBar.text]]mutableCopy];
     } else {
         self.isSearching = NO;
+        self.filteredReservationResult = nil;
     }
+    
+    [self.reservationTableView reloadData];
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
