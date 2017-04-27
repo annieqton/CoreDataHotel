@@ -33,8 +33,8 @@
 @property(strong, nonatomic)NSArray *selectedRoom;
 
 @property(strong, nonatomic)UISearchBar *searchBar;
-@property(strong, nonatomic)NSMutableArray *searchReservationResult;
-
+@property(strong, nonatomic)NSMutableArray *searchResult;
+@property(strong, nonatomic)NSMutableArray *filteredReservationResult;
 @property(nonatomic) BOOL isSearching;
 
 @end
@@ -44,8 +44,6 @@
 
 - (void)loadView {
     [super loadView];
-    
-    
     
     self.reservationTableView.dataSource = self;
     self.searchBar.delegate = self;
@@ -60,9 +58,20 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    self.searchReservationResult = [[NSMutableArray alloc]init];
+    self.searchResult = [[NSMutableArray alloc]init];
     
     [self searchTableList];
+}
+
+
+//display table of reservations prior to search
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    if(_isSearching){
+        return self.filteredReservationResult.count;
+    } else {
+        return self.allReservations.count;
+    }
 }
 
 
@@ -74,7 +83,7 @@
         NSComparisonResult result = [tempString compare:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch ) range:NSMakeRange(0, [searchString length])];
         
         if (result == NSOrderedSame) {
-            [self.searchReservationResult addObject:tempString];
+            [self.searchResult addObject:tempString];
         }
     }
 }
@@ -89,11 +98,7 @@
     self.isSearching = NO;
 }
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(nonnull NSString *)searchText {
-    NSLog(@"Text change - %d", self.isSearching);
-    
-    //remove all objects before search
-    [_searchReservationResult removeAllObjects];
+-(void)searchBar:(UISearchBar *)searchBarTextDidChange:(nonnull NSString *)searchText {
     
     if([searchText length] != 0) {
         self.isSearching = YES;
@@ -107,7 +112,7 @@
         NSLog(@"Search cancelled.");
 }
 
--(void)searchBarSearchButtonClciked:(UISearchBar *)searchBar {
+-(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"Searched clicked");
     [self searchTableList];
 }
@@ -221,10 +226,6 @@
 
 
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.allReservations.count;
-
-}
 
 
 @end
