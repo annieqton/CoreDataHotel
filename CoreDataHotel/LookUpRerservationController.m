@@ -150,12 +150,10 @@
     self.reservationTableView = [[UITableView alloc]init];
     self.reservationTableView.backgroundColor = [UIColor whiteColor];
     
-    self.reservationTableView.translatesAutoresizingMaskIntoConstraints = NO;
-    
     [AutoLayout leadingConstraintFrom:self.reservationTableView toView:self.view];
     [AutoLayout trailingConstraintFrom:self.reservationTableView toView:self.view];
     
-    NSDictionary *tableViewDictionary = @{@"searchReservationResult": self.searchReservationResult};
+    NSDictionary *tableViewDictionary = @{@"searchReservationResult": _reservationTableView};
     
     NSDictionary *tableMetricsDictionary = @{@"searchBarHeight": [NSNumber numberWithFloat:searchBarHeight]};
     
@@ -163,6 +161,7 @@
     
     [AutoLayout constraintsWithVFLForViewDictionary:tableViewDictionary forMetricsDictionary:tableMetricsDictionary withOptions:0 withVisualFormat:tableVisualFormatString];
    
+    self.reservationTableView.translatesAutoresizingMaskIntoConstraints = NO;
 }
 
 
