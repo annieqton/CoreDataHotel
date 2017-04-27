@@ -9,7 +9,8 @@
 #import "ViewController.h"
 #import "AutoLayout.h"
 #import "HotelsViewController.h"
-
+#import "DatePickerViewController.h"
+#import "LookUpRerservationController.h"
 
 @interface ViewController ()
 
@@ -17,51 +18,81 @@
 
 @implementation ViewController
 
--(void)loadView{
+- (void)loadView{
     [super loadView];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupLayout];
+    
 }
 
-
--(void)setupLayout{
+- (void)setupLayout{
     
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     
     UIButton *browseButton = [self createButtonWithTitle:@"Browse"];
+    browseButton.backgroundColor = [UIColor colorWithRed:0.1 green:0.4 blue:0.2 alpha:1.0];
+    
     UIButton *bookButton = [self createButtonWithTitle:@"Book"];
+    bookButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    
     UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
-
-    browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.75 alpha:1.0];
+    lookupButton.backgroundColor = [UIColor colorWithRed:0.25 green:0.75 blue:1.0 alpha:1.0];
+    
+    CGFloat statusBarHeight = 20.0;
+    CGFloat topMargin = navBarHeight + statusBarHeight;
+    CGFloat windowHeight = self.view.frame.size.height;
+    CGFloat buttonHeight = ((windowHeight - topMargin) / 3);
+    
+    NSDictionary *viewDictionary = @{@"browseButton": browseButton, @"bookButton": bookButton, @"lookupButton": lookupButton};
+    
+    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin], @"buttonHeight": [NSNumber numberWithFloat:buttonHeight]};
+    
+    NSString *visualFormatString = @"V:|-topMargin-[browseButton(==buttonHeight)][bookButton(==browseButton)][lookupButton(==browseButton)]|";
+    
+    [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary forMetricsDictionary:metricsDictionary withOptions:0 withVisualFormat:visualFormatString];
     
     [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
     [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
     
-    [AutoLayout equalHeightConstraintFromView:browseButton toView:self.view withMultiplier:0.2];
+    [AutoLayout leadingConstraintFrom:bookButton toView:self.view];
+    [AutoLayout trailingConstraintFrom:bookButton toView:self.view];
     
-    [AutoLayout distanceFromView:browseButton toView:self.view withAttribute: NSLayoutAttributeTop constant:navBarHeight];
-//    [AutoLayout distanceFromView:browseButton toView:self.view withAttribute: NSLayoutAttributeLeft constant:100.0];
+    [AutoLayout leadingConstraintFrom:lookupButton toView:self.view];
+    [AutoLayout trailingConstraintFrom:lookupButton toView:self.view];
+    
+    [browseButton addTarget:self action:@selector(browseButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+    [bookButton addTarget:self action:@selector(bookButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+    [lookupButton addTarget:self action:@selector(lookupButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+}
 
+- (void)browseButtonSelected{
+    HotelsViewController *newHotelsView = [[HotelsViewController alloc]init];
     
-    [browseButton addTarget:self action:@selector(browseButonSelected) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController pushViewController:newHotelsView animated:YES];
+}
+
+- (void)bookButtonSelected{
+    DatePickerViewController *newDatePickerView = [[DatePickerViewController alloc]init];
     
+    [self.navigationController pushViewController:newDatePickerView animated:YES];
 }
 
 
--(void)browseButonSelected{
-    HotelsViewController *hotelsViewController = [[HotelsViewController alloc]init];
-    [self.navigationController pushViewController:hotelsViewController animated:YES];  //push hotelsViewController to ViewController
+-(void)lookupButtonSelected{
+    LookUpRerservationController *newReservationView = [[LookUpRerservationController alloc]init];
+    
+    [self.navigationController pushViewController:newReservationView animated:YES];
 }
 
 
 
--(UIButton *)createButtonWithTitle:(NSString *)title{
+- (UIButton *)createButtonWithTitle:(NSString *)title{
     
     UIButton *button = [[UIButton alloc]init];
     
-    [button setTitle:title forState:UIControlStateNormal];
-    
+    [button setTitle:title forState:normal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     [button setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -69,10 +100,8 @@
     [self.view addSubview:button];
     
     return button;
+    
 }
-
-
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -87,3 +116,4 @@
 
 
 @end
+
