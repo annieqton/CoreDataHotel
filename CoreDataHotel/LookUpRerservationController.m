@@ -94,16 +94,18 @@
     self.isSearching = YES;
 }
 
+
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     self.isSearching = NO;
 }
+
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(nonnull NSString *)searchText {
     
     if([searchText length] != 0) {
         self.isSearching = YES;
         self.filteredReservationResult = [[NSMutableArray alloc]init];
-        self.filteredReservationResult = [[self.allReservations filteredArrayUsingPredicate:[NSPredicate:@"guest.lastName CONTAINS[c] %@ | guest.firstName CONTAINS[c] %@", self.searchBar.text, self.searchBar.text]]mutableCopy];
+        self.filteredReservationResult = [[self.allReservations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS[c] %@ OR guest.firstName CONTAINS[c] %@", self.searchBar.text, self.searchBar.text]]mutableCopy];
     } else {
         self.isSearching = NO;
         self.filteredReservationResult = nil;
@@ -112,18 +114,32 @@
     [self.reservationTableView reloadData];
 }
 
+
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-        NSLog(@"Search cancelled.");
+    self.isSearching = NO;
+    NSLog(@"Search cancelled.");
+    
+    self.filteredReservationResult = nil;
+    [self.reservationTableView reloadData];
+    [searchBar resignFirstResponder];
+    
 }
+
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"Searched clicked");
-    [self searchTableList];
+    
+    if(searchBar.text != nil) {
+        self.filteredReservationResult = [[NSMutableArray alloc]init];
+        self.filteredReservationResult = [[self.allReservations filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"guest.lastName CONTAINS[c] %@ OR guest.firstName CONTAINS[c] %@", self.searchBar.text, self.searchBar.text]]mutableCopy];
+    } else {
+        self.isSearching = NO;
+    }
+    
 }
 
 
-
-
+//set up layout for search bar and reservation table viewr
 -(void)setupLayout{
     
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
