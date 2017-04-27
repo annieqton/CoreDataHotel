@@ -98,23 +98,23 @@
     roomNumber.text = [NSString stringWithFormat:@"Room Number: %i", self.selectedRoom.number];
     roomNumber.textAlignment = NSTextAlignmentCenter;
     
-    UITextField *firstNameField = [[UITextField alloc]init];
-    firstNameField.placeholder = @"First Name (Required)";
-    firstNameField.keyboardType = UIKeyboardTypeDefault;
+    self.firstNameField = [[UITextField alloc]init];
+    self.firstNameField.placeholder = @"First Name (Required)";
+    self.firstNameField.keyboardType = UIKeyboardTypeDefault;
     
-    UITextField *lastNameField = [[UITextField alloc]init];
-    lastNameField.placeholder = @"Last Name (Required)";
-    lastNameField.keyboardType = UIKeyboardTypeDefault;
+    self.lastNameField = [[UITextField alloc]init];
+    self.lastNameField.placeholder = @"Last Name (Required)";
+    self.lastNameField.keyboardType = UIKeyboardTypeDefault;
     
-    UITextField *emailField = [[UITextField alloc]init];
-    emailField.placeholder = @"Email Address";
-    emailField.keyboardType = UIKeyboardTypeEmailAddress;
+    self.emailField = [[UITextField alloc]init];
+    self.emailField.placeholder = @"Email Address";
+    self.emailField.keyboardType = UIKeyboardTypeEmailAddress;
     
     [self.view addSubview:hotelName];
     [self.view addSubview:roomNumber];
-    [self.view addSubview:firstNameField];
-    [self.view addSubview:lastNameField];
-    [self.view addSubview:emailField];
+    [self.view addSubview:self.firstNameField];
+    [self.view addSubview:self.lastNameField];
+    [self.view addSubview:self.emailField];
     
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     
@@ -123,7 +123,7 @@
     CGFloat windowHeight = self.view.frame.size.height;
     CGFloat frameHeight = ((windowHeight - topMargin) / 10);
     
-    NSDictionary *viewDictionary = @{@"hotelName": hotelName, @"roomNumber": roomNumber, @"firstNameField": firstNameField, @"lastNameField": lastNameField, @"emailField": emailField};
+    NSDictionary *viewDictionary = @{@"hotelName": hotelName, @"roomNumber": roomNumber, @"firstNameField": self.firstNameField, @"lastNameField": self.lastNameField, @"emailField": self.emailField};
     
     NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin], @"frameHeight": [NSNumber numberWithFloat:frameHeight]};
     
@@ -133,12 +133,12 @@
     [AutoLayout trailingConstraintFrom:hotelName toView:self.view];
     [AutoLayout leadingConstraintFrom:roomNumber toView:self.view];
     [AutoLayout trailingConstraintFrom:roomNumber toView:self.view];
-    [AutoLayout leadingConstraintFrom:firstNameField toView:self.view];
-    [AutoLayout trailingConstraintFrom:firstNameField toView:self.view];
-    [AutoLayout leadingConstraintFrom:lastNameField toView:self.view];
-    [AutoLayout trailingConstraintFrom:lastNameField toView:self.view];
-    [AutoLayout leadingConstraintFrom:emailField toView:self.view];
-    [AutoLayout trailingConstraintFrom:emailField toView:self.view];
+    [AutoLayout leadingConstraintFrom:self.firstNameField toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.firstNameField toView:self.view];
+    [AutoLayout leadingConstraintFrom:self.lastNameField toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.lastNameField toView:self.view];
+    [AutoLayout leadingConstraintFrom:self.emailField toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.emailField toView:self.view];
     
     [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary
                                forMetricsDictionary:metricsDictionary
@@ -147,9 +147,9 @@
     
     [hotelName setTranslatesAutoresizingMaskIntoConstraints:NO];
     [roomNumber setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [firstNameField setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [lastNameField setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [emailField setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.firstNameField setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.lastNameField setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.emailField setTranslatesAutoresizingMaskIntoConstraints:NO];
     
 }
 

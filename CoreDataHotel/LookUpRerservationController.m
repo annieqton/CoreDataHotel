@@ -34,7 +34,7 @@
 
 @property(strong, nonatomic)UISearchBar *searchBar;
 @property(strong, nonatomic)NSMutableArray *searchReservationResult;
-@property(strong, nonatomic)BOOL isSearching;
+@property(nonatomic) BOOL isSearching;
 
 @end
 
@@ -89,24 +89,24 @@
 
 //search bar implementation
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    isSearching = YES;
+    self.isSearching = YES;
 }
 
 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    isSearching = NO;
+    self.isSearching = NO;
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(nonnull NSString *)searchText {
-    NSLog(@"Text change - %d", isSearching);
+    NSLog(@"Text change - %d", self.isSearching);
     
     //remove all objects before search
     [_searchReservationResult removeAllObjects];
     
     if([searchText length] != 0) {
-        isSearching = YES;
+        self.isSearching = YES;
         [self searchTableList];
     } else {
-        isSearching = NO;
+        self.isSearching = NO;
     }
 }
 
