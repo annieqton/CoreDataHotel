@@ -45,20 +45,15 @@
     [super loadView];
     
     
-    self.reservationTableView = [[UITableView alloc]init];
     
-    self.reservationTableView.backgroundColor = [UIColor whiteColor];
     
     self.reservationTableView.dataSource = self;
     self.reservationTableView.delegate = self;
     
     [self.reservationTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
-    self.reservationTableView.translatesAutoresizingMaskIntoConstraints = NO;
-    
     [self.view addSubview:self.reservationTableView];
-    
-    [AutoLayout fullScreenConstraintsWithVFLForView:self.reservationTableView];
+  
     
     [self setupLayout];
     
@@ -124,6 +119,50 @@
 
 -(void)setupLayout{
     
+    float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
+    
+    CGFloat statusBarHeight = 20.0;
+    CGFloat topMargin = navBarHeight + statusBarHeight;
+    CGFloat windowHeight = self.view.frame.size.height;
+    CGFloat searchBarHeight = ((windowHeight - topMargin)/10);
+    
+    //set up search bar below the navigation view
+    UISearchBar *searchBar = [[UISearchBar alloc]init];
+    searchBar.backgroundColor = [UIColor grayColor];
+    searchBar.placeholder = @"Search";
+    [self.view addSubview:searchBar];
+    
+    [AutoLayout leadingConstraintFrom:searchBar toView:self.view];
+    [AutoLayout trailingConstraintFrom:searchBar toView:self.view];
+    
+    NSDictionary *viewDictionary = @{@"searchBar": searchBar};
+                                
+    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin], @"searchBarHeight": [NSNumber numberWithFloat:searchBarHeight]};
+                                     
+    NSString *visualFormatString = @"V:|-topMargin-[searchBar]";
+
+    [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary forMetricsDictionary:metricsDictionary withOptions:0 withVisualFormat:visualFormatString];
+    
+    [searchBar setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    
+    //set resevationTableView below the search bar
+    self.reservationTableView = [[UITableView alloc]init];
+    self.reservationTableView.backgroundColor = [UIColor whiteColor];
+    
+    self.reservationTableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [AutoLayout leadingConstraintFrom:self.reservationTableView toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.reservationTableView toView:self.view];
+    
+    NSDictionary *tableViewDictionary = @{@"searchReservationResult": self.searchReservationResult};
+    
+    NSDictionary *tableMetricsDictionary = @{@"searchBarHeight": [NSNumber numberWithFloat:searchBarHeight]};
+    
+    NSString *tableVisualFormatString = @"V:|-searchBar-[reservationTableView]";
+    
+    [AutoLayout constraintsWithVFLForViewDictionary:tableViewDictionary forMetricsDictionary:tableMetricsDictionary withOptions:0 withVisualFormat:tableVisualFormatString];
+   
 }
 
 
